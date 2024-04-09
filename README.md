@@ -3,4 +3,4 @@
 
 Day 1 - 01 April (Set up)
 
-Day 2 - 08 April
+Day 2 - 09 April 
