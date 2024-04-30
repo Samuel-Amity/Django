@@ -26,7 +26,10 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">products</a>
@@ -51,9 +54,37 @@
             <button class="btn btn-success" type="submit">Search</button>
           </form>
         </div>
-        <div>
-          <button type="submit" class="btn btn-danger" style="margin-left: 30px;">Login</button>
-        </div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="profiledropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Garvit</a>
+            <ul class="dropdown-menu" aria-labelledby="profiledropdown">
+              <li>
+                <a class="dropdown-item" href="#">Profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">orders</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Change Password</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Logout</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="#" class="nav-link text-white">Cart</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="#" class="nav-link text-white">Wishlist</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="" class="nav-link text-white">Login</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="{% url 'registration' %}" class="nav-link text-white">Registration</a>
+          </li>
+        </ul>
       </div>
     </nav>
     {% block banner %}

@@ -45,3 +45,11 @@ class RegistrationView(View):
         else:
             messages.warning(request,"Invalid Input Data")
         return render(request,"kar/registration.html",locals())
+
+
+class OrderView(View):
+    def get(self, request):
+        # orders = Order.objects.all()  # Retrieve all orders from the database
+        return render(request, "kar/orders.html"
+                    #   , {'orders': orders}
+                    )
