@@ -20,3 +20,11 @@ class RegistrationForm(UserCreationForm):
         model=User
         fields= ['username','email','password1','password2']
 
+class CustomerProfileForm(forms.MOdelForm):
+    class Meta:
+        model=Customer
+        fields=['user','locality','city','mobile','state','zipcode']
+        widgets={
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+
+        }

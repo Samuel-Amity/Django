@@ -6,6 +6,7 @@ from . models import Product
 from django.db.models import Count
 from . forms import RegistrationForm
 from django.contrib import messages
+
 # Create your views here.
 def home(request):
     return render(request,"kar/home.html")
@@ -53,3 +54,15 @@ class OrderView(View):
         return render(request, "kar/orders.html"
                     #   , {'orders': orders}
                     )
+
+class ProfileView(View):
+    def get(self, request):
+        form=CustomerProfileForm()
+        return render(request,"kar/profile.html",locals())
+    def post(self,request):
+        return render(request,"kar/profile.html",locals())
+    
+class MyPasswordResetView(View):
+    def get(self, request):
+        return render(request,"kar/reset.html", locals())
+    
