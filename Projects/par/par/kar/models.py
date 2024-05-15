@@ -1,17 +1,27 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import redirect,render
+
 # Create your models here.
 
 CATEGORY_CHOICES=(
-    ('sm','samsung'),
+    ('sm','Sumsung'),
     ('ap','apple'),
     ('xi','xiaomi')
 )
-
 STATE_CHOICES=(
     ('PB','Port Blair'),
     ('AM','america'),
     ('D','Delhi')
+)
+
+STATUS_CHOICES - (
+    ('Accepted','Accepted'),
+    ('Packed','Packed'),
+    ('On The Way','On the Way'),
+    ('Delivered','Delivered'),
+    ('Cancel','Cancel'),
+    ('Pending','Pending'),
 )
 
 class Product(models.Model):
@@ -36,3 +46,33 @@ class Customer(models.Model):
     state = models.CharField(choices=STATE_CHOICES,max_length=100)
     def __str__(self):
         return self.name
+    
+class Cart(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.discounted_price
+    
+
+class Payment(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    amount=models.FloatField()
+    razorpay_order_id=models.CharField(max_length=100,blank=True,null=True)
+    razorpay_payment_id= models.CharField(max_length=100,blank=True,null=True)
+    razorpay_payment_id = models.CharField(max_length=100,blank=True,null=True)
+    paid = models.BooleanField(default=False)
+
+class OrderPlaced(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    customer=models.ForeignKey(Customer,on_delete=models.CASCADE)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity=models.IntegerField(default=1)
+    ordered_date=models.DateTimeField(auto_now_add=True)
+    status=models.CharField(max_length=50,choices=STATUS_CHOICES,default='pending')
+    payment= models.ForeignKey(Payment,on_delete=models.CASCADE,default="")
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.discounted_price
