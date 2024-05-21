@@ -33,11 +33,14 @@ urlpatterns = [
     path('cart/',views.show_cart,name='showcart'),
     path('add-to-cart',views.add_to_cart,name='add_to_cart'),
     # path('checkout',views.show_cart,name='checkout'),
-    path('checkout',views.checkout.as_view,name='checkout'),
+    path('checkout',views.Checkout.as_view,name='checkout'),
+    path('paymentdone/', views.payment_done,name='paymentdone'),
+    path('orders/', views.home,name='orders'),
     # minuscart
     # removecart
 
     path('pluscart/',views.plus_cart),
+    
 
     
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
